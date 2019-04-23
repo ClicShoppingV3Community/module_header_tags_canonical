@@ -34,7 +34,12 @@
     }
 
     public function execute() {
-      global $cPath;
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_Category = Registry::get('Category');
+
+      $this->rewriteUrl = Registry::get('RewriteUrl');
+
+      $cPath = $CLICSHOPPING_Category->getPath();
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -46,23 +51,23 @@
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Products&Specials' ) . '" />' . "\n", $this->group);
        }
 
-      if (isset($_GET['Products']) && isset($_GET['product'])) {
-        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$_GET['products_id']) . '" />' . "\n", $this->group);
+      if (isset($_GET['Products']) && isset($_GET['Description'])) {
+        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getProductNameUrl((int)$CLICSHOPPING_ProductsCommon->getID()) . '" />' . "\n", $this->group);
       }
 
       if (isset($_GET['Blog']) && isset($_GET['Categories'])) {
         if (isset($cPath) && !empty($cPath)) {
-          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, '&Blog&Categories&cPath=' . $cPath) . '" />' . "\n", $this->group);
+          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogCategoriesUrl($cPath) . '" />' . "\n", $this->group);
         }
       }
 
       if (isset($_GET['Blog']) && isset($_GET['Content'])) {
-        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Blog&Content&blog_content_id =' . (int)$_GET['blog_content_id']) . '" />' . "\n", $this->group);
+        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogContentUrl((int)$_GET['blog_content_id']) . '" />' . "\n", $this->group);
       }
 
 
       if (isset($_GET['PageManager']) && isset($_GET['Infos'])) {
-        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Info&PageManager&pages_id =' . (int)$_GET['pages_id']) . '" />' . "\n", $this->group);
+        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getPageManagerContentUrl((int)$_GET['pages_id']) . '" />' . "\n", $this->group);
       }
 
       if (isset($_GET['Search']) && isset($_GET['Q'])) {
@@ -71,9 +76,9 @@
 
       if (isset($_GET['Index'])) {
         if (isset($cPath) && !empty($cPath)) {
-          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'cPath=' . $cPath) . '" />' . "\n", $this->group);
+          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getCategoryTreeUrl($cPath) . '" />' . "\n", $this->group);
         } elseif (isset($_GET['manufacturers_id']) && !is_null($_GET['manufacturers_id'])) {
-          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'manufacturers_id=' . (int)$_GET['manufacturers_id']) . '" />' . "\n", $this->group);
+          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getManufacturerUrl((int)$_GET['manufacturers_id']) . '" />' . "\n", $this->group);
         }
       }
     }
