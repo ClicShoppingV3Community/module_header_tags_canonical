@@ -70,7 +70,7 @@
 
 
       if (isset($_GET['PageManager']) && isset($_GET['Infos'])) {
-        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getPageManagerContentUrl((int)$_GET['pages_id']) . '" />' . "\n", $this->group);
+        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getPageManagerContentUrl((int)$_GET['pagesId']) . '" />' . "\n", $this->group);
       }
 
       if (isset($_GET['Search']) && isset($_GET['Q'])) {
@@ -80,8 +80,8 @@
       if (isset($_GET['Index'])) {
         if (isset($cPath) && !empty($cPath)) {
           $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getCategoryTreeUrl($cPath) . '" />' . "\n", $this->group);
-        } elseif (isset($_GET['manufacturers_id']) && !is_null($_GET['manufacturers_id'])) {
-          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getManufacturerUrl((int)$_GET['manufacturers_id']) . '" />' . "\n", $this->group);
+        } elseif (isset($_GET['manufacturersId']) && !is_null($_GET['manufacturersId'])) {
+          $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getManufacturerUrl((int)$_GET['manufacturersId']) . '" />' . "\n", $this->group);
         }
       }
     }
