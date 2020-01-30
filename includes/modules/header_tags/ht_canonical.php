@@ -65,7 +65,7 @@
       }
 
       if (isset($_GET['Blog']) && isset($_GET['Content'])) {
-        $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogContentUrl((int)$_GET['blog_content_id']) . '" />' . "\n", $this->group);
+        //$CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogContentUrl((int)$_GET['blog_content_id']) . '" />' . "\n", $this->group);
       }
 
 
