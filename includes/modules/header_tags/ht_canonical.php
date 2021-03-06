@@ -14,8 +14,8 @@
 
   class ht_canonical
   {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_header_tags_canonical_title');
       $this->description = CLICSHOPPING::getDef('module_header_tags_canonical_description');
 
-      if (defined('MODULE_HEADER_TAGS_CANONICAL_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_CANONICAL_STATUS')) {
         $this->sort_order = MODULE_HEADER_TAGS_CANONICAL_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_CANONICAL_STATUS == 'True');
       }
@@ -80,7 +80,7 @@
       if (isset($_GET['Index'])) {
         if (isset($cPath) && !empty($cPath)) {
           $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getCategoryTreeUrl($cPath) . '" />' . "\n", $this->group);
-        } elseif (isset($_GET['manufacturersId']) && !is_null($_GET['manufacturersId'])) {
+        } elseif (isset($_GET['manufacturersId']) && !\is_null($_GET['manufacturersId'])) {
           $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getManufacturerUrl((int)$_GET['manufacturersId']) . '" />' . "\n", $this->group);
         }
       }
@@ -93,7 +93,7 @@
 
     public function check()
     {
-      return defined('MODULE_HEADER_TAGS_CANONICAL_STATUS');
+      return \defined('MODULE_HEADER_TAGS_CANONICAL_STATUS');
     }
 
     public function install()
