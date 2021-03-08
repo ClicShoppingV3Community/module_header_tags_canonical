@@ -12,10 +12,12 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
+  use ClicShopping\Sites\Shop\HeaderTags;
+
   class ht_canonical
   {
-    public string $code;
-    public string $group;
+    public $code;
+    public $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -67,7 +69,6 @@
       if (isset($_GET['Blog']) && isset($_GET['Content'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogContentUrl((int)$_GET['blogContentId']) . '" />' . "\n", $this->group);
       }
-
 
       if (isset($_GET['PageManager']) && isset($_GET['Infos'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getPageManagerContentUrl((int)$_GET['pagesId']) . '" />' . "\n", $this->group);
