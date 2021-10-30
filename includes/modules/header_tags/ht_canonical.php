@@ -48,33 +48,33 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
+      if (isset($_GET['Products'], $_GET['ProductsNew'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Products&ProductsNew') . '" />' . "\n", $this->group);
       }
 
-      if (isset($_GET['Products']) && isset($_GET['Specials'])) {
+      if (isset($_GET['Products'], $_GET['Specials'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link(null, 'Products&Specials') . '" />' . "\n", $this->group);
       }
 
-      if (isset($_GET['Products']) && isset($_GET['Description'])) {
+      if (isset($_GET['Products'], $_GET['Description'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getProductNameUrl((int)$CLICSHOPPING_ProductsCommon->getID()) . '" />' . "\n", $this->group);
       }
 
-      if (isset($_GET['Blog']) && isset($_GET['Categories'])) {
+      if (isset($_GET['Blog'], $_GET['Categories'])) {
         if (isset($cPath) && !empty($cPath)) {
           $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogCategoriesUrl($cPath) . '" />' . "\n", $this->group);
         }
       }
 
-      if (isset($_GET['Blog']) && isset($_GET['Content'])) {
+      if (isset($_GET['Blog'], $_GET['Content'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getBlogContentUrl((int)$_GET['blogContentId']) . '" />' . "\n", $this->group);
       }
 
-      if (isset($_GET['PageManager']) && isset($_GET['Infos'])) {
+      if (isset($_GET['PageManager'], $_GET['Infos'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . $this->rewriteUrl->getPageManagerContentUrl((int)$_GET['pagesId']) . '" />' . "\n", $this->group);
       }
 
-      if (isset($_GET['Search']) && isset($_GET['Q'])) {
+      if (isset($_GET['Search'], $_GET['Q'])) {
         $CLICSHOPPING_Template->addBlock('<link rel="canonical" href="' . CLICSHOPPING::link('inde.php', 'Search&Q') . '" />' . "\n", $this->group);
       }
 
